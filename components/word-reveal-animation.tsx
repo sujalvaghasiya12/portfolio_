@@ -1,7 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { motion, useReducedMotion } from "framer-motion"
 
 interface WordRevealProps {
   text: string
@@ -10,18 +9,18 @@ interface WordRevealProps {
   staggerDelay?: number
 }
 
-export default function WordRevealAnimation({ text, className = "", delay = 0, staggerDelay = 0.08 }: WordRevealProps) {
-  const [isVisible, setIsVisible] = useState(false)
+export default function WordRevealAnimation({
+  text,
+  className = "",
+  delay = 0,
+  staggerDelay = 0.06,
+}: WordRevealProps) {
+  const shouldReduceMotion = useReducedMotion()
   const words = text.split(" ")
 
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
   const containerVariants = {
-    hidden: { opacity: 1 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
         staggerChildren: staggerDelay,
         delayChildren: delay,
@@ -32,17 +31,19 @@ export default function WordRevealAnimation({ text, className = "", delay = 0, s
   const wordVariants = {
     hidden: {
       opacity: 0,
-      y: 50,
-      filter: "blur(10px)",
+      y: 18,
     },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.5,
-        ease: [0.4, 0, 0.2, 1],
-      },
+      transition: shouldReduceMotion
+        ? { duration: 0 }
+        : {
+            type: "spring",
+            stiffness: 120,
+            damping: 18,
+            mass: 0.5,
+          },
     },
   }
 
@@ -51,10 +52,18 @@ export default function WordRevealAnimation({ text, className = "", delay = 0, s
       className={className}
       variants={containerVariants}
       initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
+      animate="visible"
+      style={{ display: "inline-block" }}
     >
       {words.map((word, index) => (
-        <motion.span key={`${word}-${index}`} variants={wordVariants} className="inline-block mr-2">
+        <motion.span
+          key={`${word}-${index}`}
+          variants={wordVariants}
+          className="inline-block mr-2"
+          style={{
+            willChange: "transform, opacity",
+          }}
+        >
           {word}
         </motion.span>
       ))}

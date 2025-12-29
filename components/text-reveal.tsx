@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 import type { ReactNode } from "react"
 
 interface TextRevealProps {
@@ -9,23 +9,64 @@ interface TextRevealProps {
   staggerChildren?: number
 }
 
-export default function TextReveal({ children, delay = 0, staggerChildren = 0.02 }: TextRevealProps) {
-  const textVariants = {
-    hidden: { opacity: 0, clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" },
-    visible: (i: number) => ({
-      opacity: 1,
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+export default function TextReveal({
+  children,
+  delay = 0,
+  staggerChildren = 0.04,
+}: TextRevealProps) {
+  const shouldReduceMotion = useReducedMotion()
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
       transition: {
-        delay: delay + i * staggerChildren,
-        duration: 0.6,
-        ease: [0.77, 0, 0.175, 1],
+        staggerChildren,
+        delayChildren: delay,
       },
-    }),
+    },
+  }
+
+  const textVariants = {
+    hidden: {
+      opacity: 0,
+      y: 16,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: shouldReduceMotion
+        ? { duration: 0 }
+        : {
+            type: "spring",
+            stiffness: 90,
+            damping: 20,
+            mass: 0.6,
+          },
+    },
   }
 
   return (
-    <motion.div variants={textVariants} initial="hidden" animate="visible">
-      {children}
-    </motion.div>
+    <motion.span
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      style={{ display: "inline-block" }}
+    >
+      {String(children)
+        .split("")
+        .map((char, index) => (
+          <motion.span
+            key={index}
+            variants={textVariants}
+            style={{
+              display: "inline-block",
+              whiteSpace: char === " " ? "pre" : "normal",
+              willChange: "transform, opacity",
+            }}
+          >
+            {char}
+          </motion.span>
+        ))}
+    </motion.span>
   )
 }
