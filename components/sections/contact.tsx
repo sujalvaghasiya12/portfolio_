@@ -11,7 +11,9 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [submitted, setSubmitted] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
@@ -24,7 +26,7 @@ export default function Contact() {
 
   return (
     <section className="py-24 bg-black border-t border-gray-700/20 relative overflow-hidden">
-      {/* Soft background glow */}
+      {/* Background glow */}
       <motion.div
         className="absolute top-0 left-0 w-96 h-96 bg-gray-700/15 rounded-full blur-3xl"
         animate={{ scale: [1, 1.25, 1], x: [0, 40, 0], y: [0, 30, 0] }}
@@ -44,7 +46,6 @@ export default function Contact() {
           transition={{ duration: 0.8, ease: easeSmooth }}
           viewport={{ once: true }}
         >
-          {/* Heading */}
           <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-14">
             Let’s{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600">
@@ -60,9 +61,17 @@ export default function Contact() {
               </h3>
 
               <div className="space-y-6">
-                {[ 
-                  { icon: Phone, text: "+91 6352737639", href: "tel:+916352737639" },
-                  { icon: Mail, text: "sujalvaghasiya5@gmail.com", href: "mailto:sujalvaghasiya5@gmail.com" },
+                {[
+                  {
+                    icon: Phone,
+                    text: "+91 6352737639",
+                    href: "tel:+916352737639",
+                  },
+                  {
+                    icon: Mail,
+                    text: "sujalvaghasiya5@gmail.com",
+                    href: "mailto:sujalvaghasiya5@gmail.com",
+                  },
                 ].map(({ icon: Icon, text, href }, i) => (
                   <motion.a
                     key={i}
@@ -78,26 +87,41 @@ export default function Contact() {
                     <span>{text}</span>
                   </motion.a>
                 ))}
+              </div>
 
-                {/* Social Icons */}
-                <div className="flex gap-5 mt-10">
-                  {[Github, Linkedin, Mail].map((Icon, i) => (
-                    <motion.a
-                      key={i}
-                      href="#"
-                      whileHover={{
-                        y: -6,
-                        scale: 1.1,
-                        boxShadow: "0 10px 30px rgba(120,120,120,0.3)",
-                      }}
-                      whileTap={{ scale: 0.9 }}
-                      transition={{ duration: 0.5 }}
-                      className="p-3 rounded-lg bg-gray-900/40 border border-gray-700/40 text-gray-300 hover:text-white hover:border-gray-500"
-                    >
-                      <Icon size={22} />
-                    </motion.a>
-                  ))}
-                </div>
+              {/* Social Icons */}
+              <div className="flex gap-5 mt-10">
+                {[
+                  {
+                    Icon: Github,
+                    link: "https://github.com/sujalvaghasiya12",
+                  },
+                  {
+                    Icon: Linkedin,
+                    link: "https://www.linkedin.com/in/sujalvaghasiya/",
+                  },
+                  {
+                    Icon: Mail,
+                    link: "mailto:sujalvaghasiya5@gmail.com",
+                  },
+                ].map(({ Icon, link }, i) => (
+                  <motion.a
+                    key={i}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{
+                      y: -6,
+                      scale: 1.1,
+                      boxShadow: "0 10px 30px rgba(120,120,120,0.3)",
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ duration: 0.5 }}
+                    className="p-3 rounded-lg bg-gray-900/40 border border-gray-700/40 text-gray-300 hover:text-white hover:border-gray-500"
+                  >
+                    <Icon size={22} />
+                  </motion.a>
+                ))}
               </div>
             </div>
 
@@ -115,7 +139,9 @@ export default function Contact() {
                   key={i}
                   type={field === "email" ? "email" : "text"}
                   name={field}
-                  placeholder={`Your ${field.charAt(0).toUpperCase() + field.slice(1)}`}
+                  placeholder={`Your ${
+                    field.charAt(0).toUpperCase() + field.slice(1)
+                  }`}
                   value={(formData as any)[field]}
                   onChange={handleChange}
                   required
