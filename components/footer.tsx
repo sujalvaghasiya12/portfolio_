@@ -36,7 +36,7 @@ export default function Footer() {
               <Github size={20} />
             </motion.a>
             <motion.a
-              href="https://linkedin.com/in/sujal-vaghasiya"
+              href="https://www.linkedin.com/in/sujalvaghasiya/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-gray-900/50 border-2 border-gray-700/50 rounded-lg text-white shadow-md flex items-center justify-center"
