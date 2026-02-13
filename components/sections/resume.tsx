@@ -6,17 +6,19 @@ import { useState } from "react"
 
 const experience = [
   {
-    role: "Python Developer (Data Analytics)",
+    role: "Machine Learning Engineer",
     company: "Sahil Infotech",
     period: "January 2025 - July 2025",
     description:
-      "Developed data analytics pipelines and machine learning models. Implemented data visualization dashboards and conducted exploratory data analysis using Python, Pandas, and visualization libraries.",
+      "Worked on Large Language Model (LLM)–based applications using LangChain Designed and tested prompts to improve model responses and accuracy Built Retrieval-Augmented Generation (RAG) workflows for document-based and conversational systems
+Prepared and processed data for NLP tasks using Python Assisted in integrating LLM features into real-world applications
+Worked on Large Language Model (LLM)–based applications using LangChain Designed and tested prompts to improve model responses and accuracy Built Retrieval-Augmented Generation (RAG) workflows for document-based and conversational systems Prepared and processed data for NLP tasks using Python Assisted in integrating LLM features into real-world applications",
   },
   {
-    role: "Junior Web Developer",
-    company: "Success Innovative Technologies Pvt. Ltd.",
-    period: "January 2024 - April 2024",
-    description: "Contributed to high-performance web applications with clean code and collaborative development.",
+    role: "Machine Learning Engineer",
+    company: "Sahil Infotech",
+    period: "July 2024 - Dec 2024",
+    description: "Worked on machine learning projects involving data analysis, model development, and evaluation using Python Performed data preprocessing and feature preparation using NumPy and Pandas Created data visualizations using Matplotlib and Seaborn to analyze trends and insights Built and evaluated machine learning models using scikit-learn Contributed to project tasks while following timelines and quality standards",
   },
 ]
 
