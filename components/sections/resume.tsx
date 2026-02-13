@@ -6,7 +6,7 @@ import { useState } from "react"
 
 const experience = [
   {
-    role: "Machine Learning Engineer",
+    role: "LLM Engineer",
     company: "Sahil Infotech",
     period: "January 2025 - July 2025",
     description:
