@@ -46,7 +46,7 @@ export default function Resume() {
 
   const handleDownloadResume = () => {
     const link = document.createElement("a")
-    link.href = "/images/resume.jpeg"
+    link.href = "/images/resume.jpg"
     link.download = "Sujal_Vaghasiya_Resume.jpg"
     document.body.appendChild(link)
     link.click()
