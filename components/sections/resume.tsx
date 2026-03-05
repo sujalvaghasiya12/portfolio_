@@ -104,7 +104,7 @@ export default function Resume() {
                   whileHover={{ scale: 1.08, rotateZ: 2 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  src="/images/resume.jepg"
+                  src="/images/resume.jpeg"
                   alt="Sujal Vaghasiya Resume"
                   className="relative w-full h-full object-contain rounded-2xl border-4 border-gray-800 shadow-2xl shadow-gray-700/50 group-hover:border-gray-500 transition-all"
                 />
