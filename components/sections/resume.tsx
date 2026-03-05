@@ -46,8 +46,8 @@ export default function Resume() {
 
   const handleDownloadResume = () => {
     const link = document.createElement("a")
-    link.href = "/images/resume.jpg"
-    link.download = "Sujal_Vaghasiya_Resume.jpg"
+    link.href = "/images/resume.jpeg"
+    link.download = "Sujal_Vaghasiya_Resume.jpeg"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -104,7 +104,7 @@ export default function Resume() {
                   whileHover={{ scale: 1.08, rotateZ: 2 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  src="/images/resume.jpg"
+                  src="/images/resume.jepg"
                   alt="Sujal Vaghasiya Resume"
                   className="relative w-full h-full object-contain rounded-2xl border-4 border-gray-800 shadow-2xl shadow-gray-700/50 group-hover:border-gray-500 transition-all"
                 />
@@ -257,7 +257,7 @@ export default function Resume() {
               Close ✕
             </button>
             <img
-              src="/images/resume.jpg"
+              src="/images/resume.jpeg"
               alt="Resume Preview"
               className="w-full h-auto rounded-2xl border-4 border-gray-700 shadow-2xl"
             />
